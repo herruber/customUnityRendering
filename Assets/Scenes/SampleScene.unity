@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,9 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castShadows: 1
-  color: {r: 0.6603774, g: 0.252314, b: 0.27094463, a: 1}
-  roughness: 0.5
+  color: {r: 0.068841234, g: 0.49862182, b: 0.8584906, a: 1}
+  roughness: 0.327
   metallic: 0
+  lightwrap: 0.5
 --- !u!135 &230879524
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -265,6 +266,7 @@ MonoBehaviour:
   color: {r: 0.1500001, g: 0, b: 1, a: 1}
   roughness: 0.5
   metallic: 0
+  lightwrap: 0.5
 --- !u!65 &899373597
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -371,9 +373,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castShadows: 1
-  color: {r: 0.35879883, g: 1, b: 0.2688679, a: 1}
-  roughness: 0.5
+  color: {r: 0.22414559, g: 0.6886792, b: 0.6795818, a: 1}
+  roughness: 0.51
   metallic: 0
+  lightwrap: 0.5
 --- !u!135 &922637309
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -483,6 +486,7 @@ MonoBehaviour:
   color: {r: 0.12629052, g: 0.5242995, b: 0.8113208, a: 1}
   roughness: 0.5
   metallic: 0
+  lightwrap: 0.5
 --- !u!65 &952061163
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -748,8 +752,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd63a367799e8044834c213a9148877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialIds:
-  - {fileID: 2100000, guid: ca07d6ccec4be7f44b7b752405ba7ba2, type: 2}
+  materialBuffer:
+    renderers:
+    - {fileID: 230879523}
+    - {fileID: 899373596}
+    - {fileID: 922637308}
+    - {fileID: 952061162}
+    usedMaterials:
+    - {fileID: 2100000, guid: ca07d6ccec4be7f44b7b752405ba7ba2, type: 2}
+    needsUpdate: 0
   needsUpdate: 0
 --- !u!4 &1277671982
 Transform:

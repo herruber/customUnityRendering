@@ -14,7 +14,7 @@
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-
+			#pragma target 5.0
             #include "UnityCG.cginc"
 			#include "Common_Variables.cginc"
 			#include "Gbuffer.cginc"
@@ -51,7 +51,7 @@
 
 				Gbuffer buffer = GetBufferAt(i.uv);
 				if (buffer.color.a != 1.0) return 0.0;
-				//buffer.normal.xyz = KernelNormal(i.uv, buffer, 0.01, 1);
+				buffer.normal.xyz = KernelNormal(i.uv, buffer, 0.1, 1);
 			
 				float3 lightColor = CalculateLight(buffer);
 				result.xyz = lightColor;

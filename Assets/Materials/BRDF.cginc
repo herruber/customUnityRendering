@@ -217,6 +217,7 @@ float GeometrySchlickGGX(float NdotV, float roughness)
 
 	return num / denom;
 }
+
 float GeometrySmith(float3 N, float3 V, float3 L, float roughness)
 {
 	float NdotV = max(dot(N, V), 0.0);
@@ -229,8 +230,6 @@ float GeometrySmith(float3 N, float3 V, float3 L, float roughness)
 
 float3 WrapNormal(float3 N, float3 L, float amount) {
 
-	amount = amount / 4.0;
-	amount *= amount;
 	amount = saturate(amount);
 	float NdotL = dot(N, L);
 	float cosTheta = NdotL;
@@ -252,9 +251,12 @@ float3 BRDFBasic(Gbuffer buffer, Light light) {
 
 	Material material = materialBuffer[floor(buffer.shader.r + 0.5)];
 
+	//return material.roughness;
+
 	float3 L = normalize(-light.position); //normalize(lightPositions[i] - WorldPos);
+
 	float3 N = normalize(buffer.normal.xyz);
-	N = WrapNormal(N, L, 1);
+	N = WrapNormal(N, L, material.lightwrap);
 
 	float3 V = normalize(_WorldSpaceCameraPos - buffer.world.xyz);
 	float3 H = normalize(V + L);

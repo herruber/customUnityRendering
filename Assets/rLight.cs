@@ -26,8 +26,8 @@ public class rLight : MonoBehaviour
     {
         if (transform.hasChanged)
         {
-
-            OnValidate();
+            transform.hasChanged = false;
+            LightManager.lightManager.needsUpdate = true;
         }
     }
 }

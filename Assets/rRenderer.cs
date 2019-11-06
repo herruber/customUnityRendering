@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 [RequireComponent(typeof(MeshRenderer))]
 public class rRenderer : MonoBehaviour
 {
@@ -15,70 +14,60 @@ public class rRenderer : MonoBehaviour
     public float roughness = 0.5f;
     [Range(0, 1)]
     public float metallic = 0;
-    bool needsUpdate = false;
-
-    private int _materialIndex;
-    public int materialIndex
-    {
-        get { return _materialIndex; }
-        set {
-            _materialIndex = value;
-            needsUpdate = true;
-          
-        }
-    }
-
-    private int _objectIndex;
-    public int objectIndex
-    {
-        get { return _objectIndex; }
-        set {
-            _objectIndex = value;
-            needsUpdate = true;
-        }
-    }
+    [Range(0, 1)]
+    public float lightwrap = 0.5f;
 
     public MaterialPropertyBlock block;
 
-    public struct GpuStruct
+    void SetBlock()
     {
-        public Color color;
-        public float roughness;
-        public float metallic;
-        public Vector4 shaderData;
+        mr = GetComponent<MeshRenderer>();
+        block = new MaterialPropertyBlock();
+        mr.GetPropertyBlock(block);
     }
 
-    private void UpdateMaterial()
+    //Being set for each rrenderer found in scene from MaterialManager
+    public void SetIds(int oid, int mid)
     {
-       
-        if (block == null) return;
+        if (block == null) SetBlock();
+
+        block.SetInt("_ObjectIndex", oid);
+        block.SetInt("_MaterialIndex", mid);
+
+        mr.SetPropertyBlock(block);
+    }
+
+    //Only change user variables, things like objectid and materialid are changed by the program
+    private void OnValidate()
+    {
+
+        if (block == null) SetBlock();
+        if (MaterialManager.materialManager == null) return;
+
         Debug.Log("editing");
         block.SetColor("_Color", color);
-        block.SetInt("_ObjectIndex", objectIndex);
-        mr.sharedMaterial.SetInt("_MaterialIndex", materialIndex);
         mr.sharedMaterial.SetFloat("_Roughness", roughness);
         mr.sharedMaterial.SetFloat("_Metallic", metallic);
         mr.SetPropertyBlock(block);
-        MaterialManager.materialManager.needsUpdate = true;
-        needsUpdate = false;
-    }
 
-    private void OnValidate()
-    {
-        needsUpdate = true;
+        MaterialManager.materialManager.materialBuffer.UpdateStruct(this);
     }
 
     private void Awake()
     {
        mr = GetComponent<MeshRenderer>();
-       block = new MaterialPropertyBlock();
-       mr.GetPropertyBlock(block);
-       OnValidate();
+    
+      
+    }
+
+    private void Start()
+    {
+        OnValidate();
     }
 
     private void Update()
     {
-        if (needsUpdate) UpdateMaterial();
+
     }
 
 }

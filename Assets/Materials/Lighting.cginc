@@ -12,7 +12,7 @@ float3 KernelNormal(float2 uv, Gbuffer buffer, float maxdist, int fuse) {
 	{
 		for (int x = -2; x <= 2; x++)
 		{
-			float2 cuv = uv + float2(x, y) * screen.xy;
+			float2 cuv = uv + float2(x, y) * screen.xy * 8.0;
 			int objb = tex2D(shaderTex, cuv).y;
 
 			if(objb != obja) debug += 1.0;

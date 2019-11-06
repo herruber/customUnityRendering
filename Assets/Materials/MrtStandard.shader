@@ -5,11 +5,12 @@ Shader "Unlit/MrtStandard"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-		_MaterialIndex ("Material index", float) = -1
+		
 		_Roughness ("Roughness", float) = 0.5
 		_Metallic("Metallic", float) = 0.0
 		[PerRendererData]_Color("Color", Color) = (1,1,1,1)
-		[PerRendererData]_ObjectIndex("Object index", float) = -1
+		[PerRendererData]_ObjectIndex("Object index", int) = -1
+		[PerRendererData]_MaterialIndex("Material index", int) = -1
     }
     SubShader
     {
@@ -23,7 +24,7 @@ Shader "Unlit/MrtStandard"
             #pragma fragment frag
             // make fog work
             #pragma multi_compile_fog
-
+			#pragma target 5.0
             #include "UnityCG.cginc"
 			#include "Gbuffer.cginc"
 
@@ -46,8 +47,8 @@ Shader "Unlit/MrtStandard"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 			float4 _Color;
-			float _MaterialIndex;
-			float _ObjectIndex;
+			int _MaterialIndex;
+			int _ObjectIndex;
 			float _Roughness;
 			float _Metallic;
 

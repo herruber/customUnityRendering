@@ -10,6 +10,9 @@ struct Material {
 	float4 color;
 	float roughness;
 	float metallic;
+	float lightwrap;
+	int objectId;
+	int materialId;
 };
 
 StructuredBuffer<Light> lightBuffer;

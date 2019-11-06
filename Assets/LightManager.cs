@@ -28,6 +28,7 @@ public class LightManager : MonoBehaviour
 
     public void UpdateLights()
     {
+
         rlights = new rLightStruct[lights.Length];
 
         for (int i = 0; i < lights.Length; i++)
@@ -55,14 +56,12 @@ public class LightManager : MonoBehaviour
 
     void LoadBatch(rLightStruct[] lightBatch)
     {
-        needsUpdate = false;
         Shader.SetGlobalInt("lightBuffer_Count", lightBatch.Length);
         lightBuffer.SetData(lightBatch);
     }
 
     void LoadBatch(List<rLightStruct> lightBatch)
     {
-        needsUpdate = false;
         Shader.SetGlobalInt("lightBuffer_Count", lightBatch.Count);
         lightBuffer.SetData(lightBatch);
     }
@@ -116,6 +115,9 @@ public class LightManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (needsUpdate) UpdateLights();
+        if (needsUpdate)
+        {
+            UpdateLights();
+        }
     }
 }
