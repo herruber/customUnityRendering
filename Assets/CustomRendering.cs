@@ -5,8 +5,10 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class CustomRendering : MonoBehaviour
 {
-
-    public Material lightingMaterial;
+    public static CustomRendering customRendering;
+    //Materials to process the gbuffer and do all effects
+    public Material objectMaterial;
+    Vector4[] dirs = new Vector4[4];
     Camera current;
 
     public class Gbuffer
@@ -47,10 +49,9 @@ public class CustomRendering : MonoBehaviour
 
     Gbuffer gbuffer;
 
-    private void RenderLighting()
+    private void RenderObjects()
     {
-        current.SetTargetBuffers(Display.main.colorBuffer, Display.main.depthBuffer);
-        Graphics.Blit(null, null, lightingMaterial);
+        Graphics.Blit(null, null, objectMaterial);
     }
 
     private void RenderFramebuffer()
@@ -62,14 +63,27 @@ public class CustomRendering : MonoBehaviour
     private void LightLoop()
     {
 
-        
         for (int i = 0; i < LightManager.lightManager.batches; i++)
         {
             LightManager.lightManager.UpdateLight(i);
-            RenderLighting();
+            RenderObjects();
+        }
+   
+    }
+
+    public void UpdateCameraVariables()
+    {
+        transform.hasChanged = false;
+
+        for (int y = 0; y < 2; y++)
+        {
+            for (int x = 0; x < 2; x++)
+            {
+                dirs[x + y * 2] = current.ViewportPointToRay(new Vector3(x, y, 0)).direction;
+            }
         }
 
-        
+        Shader.SetGlobalVectorArray("dirs", dirs);
     }
 
     IEnumerator Renderloop()
@@ -77,18 +91,18 @@ public class CustomRendering : MonoBehaviour
         while (true)
         {
             yield return new WaitForEndOfFrame();
-            current.clearFlags = CameraClearFlags.Color;
-            RenderFramebuffer();
 
             current.clearFlags = CameraClearFlags.Color;
+            RenderFramebuffer();
             LightLoop();
-            
         }
     }
 
     private void Awake()
     {
-        gbuffer = new Gbuffer(new string[] { "colorTex", "worldTex", "normalTex", "shaderTex" }, 32, new Vector2Int(Screen.width, Screen.height));
+        customRendering = this;
+        Vector2Int size = new Vector2Int(Screen.width, Screen.height);
+        gbuffer = new Gbuffer(new string[] { "colorTex", "worldTex", "normalTex", "shaderTex" }, 32, size);
         current = GetComponent<Camera>();
         current.enabled = false;
     }
@@ -102,6 +116,6 @@ public class CustomRendering : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.hasChanged) UpdateCameraVariables();
     }
 }

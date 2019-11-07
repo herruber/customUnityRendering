@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 
 [ExecuteAlways]
-public class MaterialManager : MonoBehaviour
+public class MaterialManager : Manager
 {
 
     public static MaterialManager materialManager;
-
+    bool isReady = false;
     public MaterialBuffer materialBuffer;
     public bool needsUpdate = true;
 
@@ -33,7 +33,7 @@ public class MaterialManager : MonoBehaviour
 
         List<Struct> usedMaterialsGpu = new List<Struct>();
 
-        public bool needsUpdate = false;
+        public bool needsUpdate = true;
 
         //On init, get all materials in resource folder that uses MrtStandard. And get all active rRenderers
         public MaterialBuffer(Shader shader)
@@ -41,6 +41,7 @@ public class MaterialManager : MonoBehaviour
 
             usedMaterials = Resources.FindObjectsOfTypeAll<Material>().Where(e => e.shader == shader).ToList();
             renderers = FindObjectsOfType<rRenderer>().ToList();
+            ObjectManager.objectManager.renderers = renderers;
 
             for (int i = 0; i < renderers.Count; i++)
             {
@@ -65,7 +66,7 @@ public class MaterialManager : MonoBehaviour
         public void UpdateStruct(rRenderer r)
         {
             int id = renderers.IndexOf(r);
-
+            if (usedMaterialsGpu == null || usedMaterialsGpu.Count < 1) return;
             Struct s = usedMaterialsGpu[id];
             s.color = r.color;
             s.materialId = r.block.GetInt("_MaterialIndex");
@@ -97,14 +98,14 @@ public class MaterialManager : MonoBehaviour
     private void Awake()
     {
         materialManager = this;
-        materialBuffer = new MaterialBuffer(Shader.Find("Unlit/MrtStandard"));
         Shader.SetGlobalFloat("PI", Mathf.PI);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-      
+        materialBuffer = new MaterialBuffer(Shader.Find("Unlit/MrtStandard"));
+
     }
 
     private void Update()

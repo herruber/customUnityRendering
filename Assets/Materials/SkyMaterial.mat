@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Standard
-  m_Shader: {fileID: 4800000, guid: 17b2bbe9befc8b94384c575cfb6c8ed0, type: 3}
+  m_Name: SkyMaterial
+  m_Shader: {fileID: 4800000, guid: a7d7693d747122747b29027f9434e13b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -63,13 +63,10 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaterialIndex: 0
     - _Metallic: 0
     - _Mode: 0
-    - _ObjectIndex: -1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Roughness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -78,4 +75,3 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Shader: {r: 1, g: 1, b: 1, a: 1}

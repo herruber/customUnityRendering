@@ -10,7 +10,7 @@ public class LightManager : MonoBehaviour
 
     ComputeBuffer lightBuffer;
     public static LightManager lightManager;
-
+    bool isReady = false;
     public struct rLightStruct
     {
         public int type;
@@ -94,27 +94,26 @@ public class LightManager : MonoBehaviour
 
     }
 
-
     private void Awake()
     {
+      
         lightManager = this;
         lightBuffer = new ComputeBuffer(20, Marshal.SizeOf(typeof(rLightStruct)));
         Shader.SetGlobalBuffer("lightBuffer", lightBuffer);
-
-        lights = FindObjectsOfType<rLight>();
-
-        UpdateLights();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        lights = FindObjectsOfType<rLight>();
+
+        UpdateLights();
     }
 
     // Update is called once per frame
     void Update()
     {
+      
         if (needsUpdate)
         {
             UpdateLights();
