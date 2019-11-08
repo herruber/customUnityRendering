@@ -3,6 +3,9 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+		_SunSize("Sun size", Range(0.0, 1.0)) = 0.1
+		_HaloSize("Halo size", Range(0.0, 1.0)) = 0.1
+		_HaloArea("Halo area", Range(0.01, 1.0)) = 0.1
     }
     SubShader
     {
@@ -16,6 +19,7 @@
             #pragma fragment frag
 			#pragma target 5.0
             #include "UnityCG.cginc"
+			#include "Constants.cginc"
 			#include "Common_Variables.cginc"
 			#include "Gbuffer.cginc"
 			#include "Common_Lighting.cginc"
@@ -43,12 +47,12 @@
                 return o;
             }
 
-            sampler2D _MainTex;
+            sampler2D _MainTex, _ReflTex;
 
 
 			float4 zenithColor;
 			float4 horizonColor;
-			float tod;
+			float tod, _HaloSize, _SunSize, _HaloArea;
 
 			Hit ClosestHit(Ray ray) {
 
@@ -87,96 +91,128 @@
 				return closest;
 			}
 
-			//incomming intensity, wavelength, distance to particle, particle position, light dir, particle to camera dir
+			float3 GetSky(float3 wpos) {
 			
+				float3 color = 0;
 
-			float4 GetSkyColorAt(Ray ray, float2 uv) {
+				Light sun = lightBuffer[0];
+		
+				// Normalized screen space coordinates of the sun controlled by mouse
+				wpos = normalize(wpos);
+				float3 sunPosition = -normalize(sun.position.xyz);
 
-				float d = 1000.0;
+				float saty = saturate(sunPosition.y);
+				// Interpolate between midday and evening sky colors based on sun height
+				float3 sky_horizonColor = lerp(float3(0.8, 0.4, 0.1), float3(0.6, 0.6, 1.0), pow(saty, 0.3));
+				float3 sky_Color = lerp(float3(0.1, 0.1, 0.3), float3(0.2, 0.2, 0.7), pow(saty, 0.3));
 
-				Sphere dome;
-				dome.c = 0.0;
-				dome.r = 500.0;
+				// Sky gradient
+				float3 skyGradient = lerp(sky_horizonColor, sky_Color, pow(wpos.y, 0.5));
 
-				Hit hit = RaycastSphere(ray, dome);
-				float3 skypos = hit.pos;
+				// Simple sun disc
+				float3 sun_color = sun.color.rgb * sun.color.a;
+				float3 sunDisc = sun_color * (length(wpos - sunPosition) < _SunSize ? 1.0 : 0.0);
+				sunDisc = sunDisc;// saturate(sunDisc);
+
+				// Compute sun halo for horizon and zenit
+				float sunHaloFactor = saturate(length(wpos - sunPosition) - _HaloSize) / length(wpos);
+				
+				float sunHaloPoly = (1.0 - pow(sunHaloFactor, 0.15 + (1.0 - sunPosition.y)*0.2)) * (1.0 - wpos.y);
+				float sunHaloExp = exp(-pow(sunHaloFactor, 2.0) / (2.0*pow(_HaloArea, 2.0)));
+				// Interpolate sun halo
+				float3 sunHalo = sun_color * lerp(sunHaloPoly, sunHaloExp, pow(saturate(sunPosition.y), 0.6));
+			
+				// Combine sky gradient, sun disc and sun halo for final color
+				color = skyGradient + sunDisc + sunHalo;
+
+				// Debugging
+				//fragColor = float4(sunHalo,1.0);
+
+
+				return color;
+			}
+
+			float3 GetSky(float2 uv) {
 
 				Light light = lightBuffer[0];
+				float3 viewDir = ViewDir(uv);
+
 				float3 L = -normalize(light.position.xyz);
-
-				float3 sunpos = L * dome.r;
-
-				float dii = distance(skypos, sunpos);
-
-				//Mie mask
-
-				float radius = 0.29 * pow(10.0, -2.0); //Gas
-				float size = 2.0 * PI * radius;
-				float ior = 1.003;
-
-				float scatterRay = -ray.dir;
-				float scatterAngle = (L * scatterRay) / (abs(L) * abs(scatterRay)); // acos(dot(L, scatterRay));
-				return scatterAngle;
-				float w = 600.0 * pow(10.0, -9.0);
-				float b = pow(2.0 * PI / w, 4.0);
-				float n = pow((ior * ior - 1.0) / (ior * ior + 2.0), 2.0);
-				float r = pow(radius, 6.0);
-			
-				float aa = (1.0 + scatterAngle) / (2.0 * dome.r * dome.r);
-
-				float sun = aa * b * n * r;
+				float3 W = _WorldSpaceCameraPos + viewDir * 1000.0;
 				
-				//*((0.5 + 1.0 * pow(L.y, 0.4)) * ((1.5 * dome.r - skypos.y) / dome.r) + pow(sun, 5.2)
-				//	* L.y * (5.0 + 15.0 * L.y)), 1.0);
-
-				return float4(lerp(float3(0.3984, 0.5117, 0.7305), float3(0.7031, 0.4687, 0.1055), sun), 1.0);
-			}
-
-			float4 TraceSkyReflectance(Ray ray, Gbuffer buffer) {
-
-				Hit closest = ClosestHit(ray);
-
-				//We hit another geometry
-				if (closest.valid)
-				{
-					int id = closest.materialId;
-
-					ray.origin = closest.pos - ray.dir * 0.001;
-					ray.dir = reflect(ray.dir, closest.normal);
-					Hit closestB = ClosestHit(ray);
-
-					if(closestB.valid) return float4(materialBuffer[id].color.rgb, 1.0);
-
-
-				}
-				
-				return GetSkyColorAt(ray, 0);
+				return GetSky(W);
 
 			}
 
-			float4 CalculateSky(float2 uv, Gbuffer buffer) {
-				
+			float3 GetReflections(float2 uv, Gbuffer buffer) {
+
+
+				Light light = lightBuffer[0];
+		
+
+				float3 viewDir = ViewDir(uv);
+				float3 L = -normalize(lightBuffer[0].position.xyz);
+				float3 N = WrapNormal(buffer.normal, L, buffer.normal.xyz); // normalize(buffer.normal.xyz);
 				Ray ray;
-				float d = 1000;
-				float r = 500;
-				//If no sky visible at this pixel, reflect the light
-				if (buffer.color.a == 1) {
-				/*	
-					ray.origin = buffer.world.xyz + buffer.normal.xyz * 0.02;
-					ray.dir = -normalize(lightBuffer[0].position.xyz);
-					return	TraceSkyReflectance(ray, buffer);*/
-				}
-				//If sky is visible compute the skycolor 
-				else
+				ray.origin = buffer.world.xyz + N * 0.01;
+				ray.dir = reflect(viewDir, N);
+			
+
+				Hit closest;
+				closest.valid = false;
+				closest.t = 99999.9;
+
+				for (int i = 0; i < 50; i++)
 				{
-					ray.dir = ViewDir(uv);
-					ray.origin = _WorldSpaceCameraPos;
+					if (i >= objectBuffer_Count) break;
+
+					Tri tri = objectBuffer[i];
+					Hit hit;
+
+					//geo
+					if(tri.type == 0)  hit = RaycastTri(ray, tri);
+					//Sphere
+					else if (tri.type == 1) {
+						Sphere s;
+						s.c = tri.a.xyz;
+						s.r = tri.b.x;
+						hit = RaycastSphere(ray, s);
+					}
+
+					if (hit.valid && hit.t < closest.t) closest = hit;
 					
 				}
+			
+				if (closest.valid)
+				{
+					int matid = closest.materialId;
+					Material mat = materialBuffer[matid];
+					return mat.color.xyz;
+				}
 
-				return GetSkyColorAt(ray, uv);
+
+				Sphere dome;
+				dome.c = 0;
+				dome.r = 1000.0;
+
+				Hit hit = RaycastSphere(ray, dome);
+
+
+				return GetSky(hit.pos);
+
 			}
 
+			float4 GetObjectColor(float2 uv, Gbuffer buffer) {
+
+				float4 color = 1.0;
+
+				color.rgb = GetReflections(uv, buffer);
+
+
+				color.rgb = CalculateLight(buffer, color);
+
+				return color;
+			}
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -184,16 +220,20 @@
 				float4 result = 1;
 				float4 sky = 1;
 
-				Gbuffer buffer = GetBufferAt(i.uv);
-				
+				//Gbuffer buffer = GetBufferAt(i.uv);
+
+				return tex2D(_ReflTex, i.uv);
+
+			/*	
+				if (buffer.color.a == 0) return float4(GetSky(i.uv), 1.0);
+				else return GetObjectColor(i.uv, buffer);
+*/
 				//return materialBuffer[0].color;
-				sky = CalculateSky(i.uv, buffer);
-				
-				return sky;
-			
-				float3 color = CalculateLight(buffer);
-				result.xyz = color; // lerp(sky, color, buffer.color.a);
-				
+				//sky = CalculateSky(i.uv, buffer);
+
+				//float3 color = CalculateLight(buffer);
+				//result.xyz = color; // lerp(sky, color, buffer.color.a);
+				//
 				//result.xyz = buffer.shader.x;
                 return result;
             }

@@ -98,12 +98,13 @@ public class MaterialManager : Manager
     private void Awake()
     {
         materialManager = this;
-        Shader.SetGlobalFloat("PI", Mathf.PI);
+     
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        Shader.SetGlobalFloat("PI", Mathf.PI);
         materialBuffer = new MaterialBuffer(Shader.Find("Unlit/MrtStandard"));
 
     }

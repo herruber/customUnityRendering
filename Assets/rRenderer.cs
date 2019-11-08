@@ -84,7 +84,11 @@ public class rRenderer : MonoBehaviour
     //Only change user variables, things like objectid and materialid are changed by the program
     private void OnValidate()
     {
-
+        if (MaterialManager.materialManager == null && !queued)
+        {
+            StartCoroutine(QueueUpdates());
+            return;
+        }
         if (block == null) SetBlock();
         
         Debug.Log("editing");
@@ -93,11 +97,7 @@ public class rRenderer : MonoBehaviour
         mr.sharedMaterial.SetFloat("_Metallic", metallic);
         mr.SetPropertyBlock(block);
 
-        if (MaterialManager.materialManager == null && !queued)
-        {
-            StartCoroutine(QueueUpdates());
-            return;
-        }
+     
         MaterialManager.materialManager.materialBuffer.UpdateStruct(this);
     }
 

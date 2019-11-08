@@ -52,6 +52,8 @@ Hit RaycastTri(Ray ray, Tri tri)
 {
 	Hit hit;
 	hit.valid = false;
+	hit.t = -1;
+
 	hit.materialId = tri.materialId;
 	hit.objectId = tri.objectId;
 
@@ -106,6 +108,7 @@ Hit RaycastSphere(Ray r, Sphere s) {
 	hit.materialId = -1;
 	hit.objectId = -1;
 	hit.valid = false;
+	hit.t = -1;
 	float3 p = r.origin;
 	float3 d = r.dir;
 
@@ -119,7 +122,6 @@ Hit RaycastSphere(Ray r, Sphere s) {
 
 	// A negative discriminant corresponds to ray missing sphere 
 	if (discr < 0.0) return hit;
-
 	// Ray now found to intersect sphere, compute smallest t value of intersection
 	float t = -b - sqrt(discr);
 

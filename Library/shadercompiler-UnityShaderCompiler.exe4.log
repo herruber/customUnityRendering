@@ -1,2 +1,20 @@
 Base path: 'C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(52): implicit truncation of vector type
+  api=4 insize=1338 outsize=589 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(95): implicit truncation of vector type
+  api=4 insize=2118 outsize=3226 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(100): implicit truncation of vector type
+  api=4 insize=2224 outsize=2902 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(102): implicit truncation of vector type
+  api=4 insize=2321 outsize=3623 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(102): implicit truncation of vector type
+  api=4 insize=2282 outsize=3595 ok=1

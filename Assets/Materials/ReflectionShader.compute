@@ -1,0 +1,99 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+#include "Raycaster.cginc"
+#include "Common_Lighting.cginc"
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+
+struct Gbuffer
+{
+	float4 color;
+	float4 world;
+	float4 normal;
+	float4 shader;
+};
+
+RWTexture2D<float4> ReflTex;
+Texture2D<float4> colorTex, normalTex, worldTex, shaderTex;
+SamplerState MyPointClampSampler;
+float4 dirs[4];
+float4 screen;
+
+Gbuffer GetBufferAt(float2 uv, int mip) {
+
+	Gbuffer buffer;
+	buffer.color = colorTex.SampleLevel(MyPointClampSampler, uv, mip); // MyPointClampSampler.sample colorTex[pix];// tex2D(colorTex, uv);
+	buffer.normal = normalTex.SampleLevel(MyPointClampSampler, uv, mip); // tex2D(normalTex, uv);
+	buffer.world = worldTex.SampleLevel(MyPointClampSampler, uv, mip); // tex2D(worldTex, uv);
+	buffer.shader = shaderTex.SampleLevel(MyPointClampSampler, uv, mip); // tex2D(shaderTex, uv);
+
+	return buffer;
+}
+
+float4 ToLight(Light light, Ray ray, int _ObjectIndex = -1) {
+
+
+	Hit closest;
+	closest.t = 9999999.9;
+
+	for (int i = 0; i < objectBuffer_Count; i++)
+	{
+
+		Tri tri = objectBuffer[i];
+
+		Hit hit;
+		if (tri.type == 0) {	//0 geo 1 sphere
+			hit = RaycastTri(ray, tri);
+		}
+		else if (tri.type == 1) {
+			Sphere s;
+			s.c = tri.a.xyz;
+			s.r = tri.b.x;
+
+			hit = RaycastSphere(ray, s);
+		}
+
+		if (hit.valid && hit.t < closest.t) {
+			closest = hit;
+		}
+		
+	}
+
+	if (!closest.valid) return light.color; //No hit return light intensity 1
+
+	return 0;
+
+}
+
+float4 LightLoop(float2 uv, int mip) {
+
+	float4 color = 0;
+	Gbuffer buffer = GetBufferAt(uv, mip);
+	if (buffer.color.a == 0) return float4(1, 0, 1, 1); //Get sky
+	float3 N = normalize(buffer.normal.xyz);
+	Ray ray;
+	ray.origin = buffer.world.xyz  + N * 0.02;
+
+	for (int i = 0; i < lightBuffer_Count; i++)
+	{
+		Light light = lightBuffer[i];
+		ray.dir = -normalize(light.position.xyz);
+		
+		color += ToLight(light, ray, buffer.shader.y);
+	}
+
+	
+	return color;
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	float2 uv = id.xy * screen.xy;
+	float4 color = 1;
+	color.xyz = LightLoop(uv, 0);
+
+	ReflTex[id.xy] = color;
+}

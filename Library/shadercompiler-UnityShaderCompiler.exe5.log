@@ -1,6 +1,73 @@
 Base path: 'C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
-Cmd: compileSnippet
-  api=4 type=1 insize=1302 outsize=218 kw=UNITY_PASS_SHADOWCASTER SHADOWS_DEPTH pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(55): implicit truncation of vector type
+  api=4 insize=1379 outsize=761 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at ReflectionShader.compute(58): 'RaycastTri': cannot implicitly convert from 'struct Sphere' to 'struct Tri'
+  api=4 insize=1980 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 2 plat 4 at ReflectionShader.compute(63): syntax error: unexpected token '}'
+  error: 2 plat 4 at ReflectionShader.compute(72): syntax error: unexpected token '('
+  error: 2 plat 4 at ReflectionShader.compute(75): undeclared identifier 'uv'
+  api=4 insize=1983 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(95): implicit truncation of vector type
+  api=4 insize=2130 outsize=439 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(95): implicit truncation of vector type
+  api=4 insize=2162 outsize=3374 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(95): implicit truncation of vector type
+  api=4 insize=2190 outsize=3519 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2182 outsize=3422 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2214 outsize=3631 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(101): implicit truncation of vector type
+  api=4 insize=2322 outsize=3687 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(100): implicit truncation of vector type
+  api=4 insize=2252 outsize=3567 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at ReflectionShader.compute(82): undeclared identifier 'hit'
+  api=4 insize=2249 outsize=0 ok=0
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(100): implicit truncation of vector type
+  api=4 insize=2250 outsize=3519 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(101): implicit truncation of vector type
+  api=4 insize=2267 outsize=3519 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(101): implicit truncation of vector type
+  api=4 insize=2266 outsize=3523 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(101): implicit truncation of vector type
+  api=4 insize=2279 outsize=3595 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(102): implicit truncation of vector type
+  api=4 insize=2328 outsize=3683 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(102): implicit truncation of vector type
+  api=4 insize=2318 outsize=3595 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(102): implicit truncation of vector type
+  api=4 insize=2281 outsize=3595 ok=1
 
 Quitting shader compiler process

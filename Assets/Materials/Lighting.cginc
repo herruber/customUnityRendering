@@ -34,7 +34,7 @@ float3 KernelNormal(float2 uv, Gbuffer buffer, float maxdist, int fuse) {
 
 }
 
-float3 CalculateLight(Gbuffer buffer) {
+float3 CalculateLight(Gbuffer buffer, float3 reflections) {
 
 	float3 color = float3(0, 0, 0);
 
@@ -42,7 +42,7 @@ float3 CalculateLight(Gbuffer buffer) {
 	{
 		if (i >= lightBuffer_Count) break;
 
-		color += BRDFBasic(buffer, lightBuffer[i]);
+		color += BRDFBasic(buffer, lightBuffer[i], reflections);
 	}
 
 	color = color;

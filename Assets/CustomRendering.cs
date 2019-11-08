@@ -1,15 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class CustomRendering : MonoBehaviour
 {
     public static CustomRendering customRendering;
     //Materials to process the gbuffer and do all effects
-    public Material objectMaterial;
+    public Material lightMaterial;
     Vector4[] dirs = new Vector4[4];
     Camera current;
+    public RenderTexture reflTex;
+    int kernel = -1;
+    public ComputeShader raytracer;
+    public RenderTexture[] textures;
 
     public class Gbuffer
     {
@@ -34,24 +38,37 @@ public class CustomRendering : MonoBehaviour
                 RenderTexture tex = new RenderTexture(size.x, size.y, currentDepth, RenderTextureFormat.ARGBFloat);
                 tex.filterMode = FilterMode.Point;
                 tex.wrapMode = TextureWrapMode.Clamp;
+                tex.useMipMap = true;
                 tex.Create();
                 colorbuffers[i] = tex.colorBuffer;
 
                 Shader.SetGlobalTexture(channels[i], tex);
+
+                customRendering.raytracer.SetTexture(customRendering.kernel, channels[i], tex);
+
                 targets[i] = tex;
             }
 
             depthbuffer = targets[0].depthBuffer;
 
-            Shader.SetGlobalVector("screen", new Vector4(1f / Screen.width, 1f / Screen.height, Screen.width, Screen.height));
+            customRendering.textures = targets;
+            Vector4 sz = new Vector4(1f / Screen.width, 1f / Screen.height, Screen.width, Screen.height);
+            Shader.SetGlobalVector("screen", sz);
+            customRendering.raytracer.SetVector("screen", sz);
         }
     }
 
     Gbuffer gbuffer;
 
+    private void FinalImage()
+    {
+        Graphics.Blit(null, null, lightMaterial);
+    }
+
     private void RenderObjects()
     {
-        Graphics.Blit(null, null, objectMaterial);
+        raytracer.Dispatch(kernel, Screen.width / 8, Screen.height / 8, 1);
+       
     }
 
     private void RenderFramebuffer()
@@ -83,7 +100,10 @@ public class CustomRendering : MonoBehaviour
             }
         }
 
+        raytracer.SetTexture(kernel, "ReflTex", reflTex);
+        lightMaterial.SetTexture("_ReflTex", reflTex);
         Shader.SetGlobalVectorArray("dirs", dirs);
+        raytracer.SetVectorArray("dirs", dirs);
     }
 
     IEnumerator Renderloop()
@@ -93,14 +113,25 @@ public class CustomRendering : MonoBehaviour
             yield return new WaitForEndOfFrame();
 
             current.clearFlags = CameraClearFlags.Color;
+            UpdateCameraVariables();
             RenderFramebuffer();
             LightLoop();
+            FinalImage();
         }
     }
 
     private void Awake()
     {
         customRendering = this;
+
+        kernel = raytracer.FindKernel("CSMain");
+
+        reflTex = new RenderTexture(Screen.width, Screen.height, 0);
+        reflTex.wrapMode = TextureWrapMode.Clamp;
+        reflTex.filterMode = FilterMode.Point;
+        reflTex.enableRandomWrite = true;
+        reflTex.Create();
+
         Vector2Int size = new Vector2Int(Screen.width, Screen.height);
         gbuffer = new Gbuffer(new string[] { "colorTex", "worldTex", "normalTex", "shaderTex" }, 32, size);
         current = GetComponent<Camera>();
@@ -116,6 +147,6 @@ public class CustomRendering : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.hasChanged) UpdateCameraVariables();
+
     }
 }

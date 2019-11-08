@@ -1,0 +1,1 @@
+static const float nano = 0.000000001f;

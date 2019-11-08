@@ -7,7 +7,12 @@ public class SkyManager : Manager
     public static SkyManager skyManager;
     public Gradient horizonColor;
     public Gradient zenithColor;
-    public float time = 0.5f;
+    public Gradient sunColor;
+    public AnimationCurve sunAltitudeCurve;
+    public float time = 0f;
+
+    public float dawn = 0.25f;
+    public float dusk = 0.75f;
 
     private void Awake()
     {
@@ -17,9 +22,12 @@ public class SkyManager : Manager
     private void UpdateSky()
     {
         if (CustomRendering.customRendering == null) return;
-        CustomRendering.customRendering.objectMaterial.SetColor("horizonColor", horizonColor.Evaluate(time));
-        CustomRendering.customRendering.objectMaterial.SetColor("zenithColor", zenithColor.Evaluate(time));
-        CustomRendering.customRendering.objectMaterial.SetFloat("dayTime", time);
+
+
+        //float altitude = 0f;
+        //CustomRendering.customRendering.objectMaterial.SetColor("horizonColor", horizonColor.Evaluate(time));
+        //CustomRendering.customRendering.objectMaterial.SetColor("zenithColor", zenithColor.Evaluate(time));
+        //CustomRendering.customRendering.objectMaterial.SetFloat("dayTime", time);
     }
 
     private void OnValidate()

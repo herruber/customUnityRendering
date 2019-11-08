@@ -76,7 +76,7 @@ Shader "Unlit/MrtStandard"
 				float4 color = _Color;
 
 				p.color = _Color;
-				p.normal = i.worldNormal;
+				p.normal = normalize(i.worldNormal);
 				p.world = i.world;
 				p.shader = float4(_MaterialIndex, _ObjectIndex, 0, 0);	//x materialID, y objectId
 

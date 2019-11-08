@@ -241,17 +241,24 @@ float3 WrapNormal(float3 N, float3 L, float amount) {
 	return normalize(cosPhi * N + sinPhi * cross(cross(N, L), N));
 }
 
+float3 fresnelSchlickRoughness(float cosTheta, float3 F0, float roughness)
+{
+	return F0 + (max(1.0 - roughness, F0) - F0) * pow(1.0 - cosTheta, 5.0);
+}
+
 float Band(float val, float steps) {
 
 	val = floor(val * steps);
 	return val / steps;
 }
 
-float3 BRDFBasic(Gbuffer buffer, Light light) {
+float3 BRDFBasic(Gbuffer buffer, Light light, float3 reflections) {
 
 	Material material = materialBuffer[floor(buffer.shader.r + 0.5)];
 
 	//return material.roughness;
+
+	float3 albedo = material.color.rgb;
 
 	float3 L = normalize(-light.position); //normalize(lightPositions[i] - WorldPos);
 
@@ -271,20 +278,29 @@ float3 BRDFBasic(Gbuffer buffer, Light light) {
 	float G = GeometrySmith(N, V, L, material.roughness);
 	float3 F = fresnelSchlick(VdotH, F0);
 	
-	F0 = lerp(F0, material.color.rgb, material.metallic);
-	float3 kS = F;
+	F0 = lerp(F0, albedo, material.metallic);
+	/*float3 kS = F;
 	float3 kD = 1.0 - kS;
-	kD *= 1.0 - material.metallic;
+	kD *= 1.0 - material.metallic;*/
 
+	float3 kS = fresnelSchlickRoughness(max(dot(N, V), 0.0), F0, material.roughness);
+	float3 kD = 1.0 - kS;
+	
 	float3 numerator = NDF * G * F;
 
 	float denominator = 4.0 * max(NdotV, 0.0) * max(NdotL, 0.0);
 	
 	float3 specular = numerator / max(denominator, 0.001);
-	
-	float3 Lo = (kD * material.color.rgb / PI + specular) * light.color.w * NdotL;
+
+	float3 irradiance = reflections; // texture(irradianceMap, N).rgb;
+	float3 diffuse = irradiance * albedo;
+	float3 ambient = (kD * diffuse);
+
+
+	float3 Lo = (kD * albedo.xyz / PI + specular) * light.color.w * NdotL;
+	float3 color = ambient + Lo;
 
 	
-	return Lo;
+	return color;
 }
 

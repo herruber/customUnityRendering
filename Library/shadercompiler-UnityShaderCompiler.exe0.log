@@ -1,2 +1,293 @@
 Base path: 'C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2019.2.4f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=1282 outsize=1281 ok=1
+Cmd: preprocessCompute
+  insize=1401 outsize=1400 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at Assets/Materials/Raycaster.cginc(20): unrecognized identifier 'Tri'\nCompiling Vertex program
+Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
+  api=4 type=0 insize=5914 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=0
+Cmd: preprocessCompute
+  insize=1403 outsize=1402 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: preprocessCompute
+  insize=1403 outsize=1402 ok=1
+Cmd: preprocessCompute
+  insize=1339 outsize=1338 ok=1
+Cmd: preprocessCompute
+  insize=1339 outsize=1338 ok=1
+Cmd: preprocessCompute
+  insize=1380 outsize=1379 ok=1
+Cmd: preprocessCompute
+  insize=1380 outsize=1379 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5914 outsize=654 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5914 outsize=310 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: preprocessCompute
+  insize=1980 outsize=1979 ok=1
+Cmd: preprocessCompute
+  insize=1981 outsize=1980 ok=1
+Cmd: preprocessCompute
+  insize=1984 outsize=1983 ok=1
+Cmd: preprocessCompute
+  insize=2000 outsize=1999 ok=1
+Cmd: preprocessCompute
+  insize=2004 outsize=2003 ok=1
+Cmd: preprocessCompute
+  insize=2119 outsize=2118 ok=1
+Cmd: preprocessCompute
+  insize=2131 outsize=2130 ok=1
+Cmd: preprocessCompute
+  insize=2137 outsize=2136 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(95): implicit truncation of vector type
+  api=4 insize=2136 outsize=467 ok=1
+Cmd: preprocessCompute
+  insize=2119 outsize=2118 ok=1
+Cmd: preprocessCompute
+  insize=2136 outsize=2135 ok=1
+Cmd: preprocessCompute
+  insize=2146 outsize=2145 ok=1
+Cmd: preprocessCompute
+  insize=2169 outsize=2168 ok=1
+Cmd: preprocessCompute
+  insize=2163 outsize=2162 ok=1
+Cmd: preprocessCompute
+  insize=2163 outsize=2162 ok=1
+Cmd: preprocessCompute
+  insize=2190 outsize=2189 ok=1
+Cmd: preprocessCompute
+  insize=2191 outsize=2190 ok=1
+Cmd: preprocessCompute
+  insize=2202 outsize=2201 ok=1
+Cmd: preprocessCompute
+  insize=2184 outsize=2183 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2183 outsize=3422 ok=1
+Cmd: preprocessCompute
+  insize=2184 outsize=2183 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2183 outsize=3426 ok=1
+Cmd: preprocessCompute
+  insize=2183 outsize=2182 ok=1
+Cmd: preprocessCompute
+  insize=2183 outsize=2182 ok=1
+Cmd: preprocessCompute
+  insize=2193 outsize=2192 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2192 outsize=3519 ok=1
+Cmd: preprocessCompute
+  insize=2192 outsize=2191 ok=1
+Cmd: preprocessCompute
+  insize=2194 outsize=2193 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2193 outsize=3519 ok=1
+Cmd: preprocessCompute
+  insize=2215 outsize=2214 ok=1
+Cmd: preprocessCompute
+  insize=2214 outsize=2213 ok=1
+Cmd: preprocessCompute
+  insize=2214 outsize=2213 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2213 outsize=3631 ok=1
+Cmd: preprocessCompute
+  insize=2214 outsize=2213 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2213 outsize=3635 ok=1
+Cmd: preprocessCompute
+  insize=2214 outsize=2213 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2213 outsize=3635 ok=1
+Cmd: preprocessCompute
+  insize=2215 outsize=2214 ok=1
+Cmd: preprocessCompute
+  insize=2205 outsize=2204 ok=1
+Cmd: preprocessCompute
+  insize=2195 outsize=2194 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2194 outsize=3510 ok=1
+Cmd: preprocessCompute
+  insize=2194 outsize=2193 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2193 outsize=3510 ok=1
+Cmd: preprocessCompute
+  insize=2193 outsize=2192 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(96): implicit truncation of vector type
+  api=4 insize=2192 outsize=3510 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5914 outsize=654 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5914 outsize=310 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: preprocessCompute
+  insize=2166 outsize=2165 ok=1
+Cmd: preprocessCompute
+  insize=2168 outsize=2167 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(97): implicit truncation of vector type
+  api=4 insize=2167 outsize=3462 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5914 outsize=654 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5914 outsize=310 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: preprocessCompute
+  insize=2168 outsize=2167 ok=1
+Cmd: preprocessCompute
+  insize=2306 outsize=2305 ok=1
+Cmd: preprocessCompute
+  insize=2323 outsize=2322 ok=1
+Cmd: preprocessCompute
+  insize=2327 outsize=2326 ok=1
+Cmd: preprocessCompute
+  insize=2329 outsize=2328 ok=1
+Cmd: preprocessCompute
+  insize=2308 outsize=2307 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5914 outsize=654 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5914 outsize=310 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: preprocessCompute
+  insize=2225 outsize=2224 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5914 outsize=654 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5914 outsize=310 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: preprocessCompute
+  insize=2225 outsize=2224 ok=1
+Cmd: preprocessCompute
+  insize=2253 outsize=2252 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5914 outsize=654 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5914 outsize=310 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: preprocessCompute
+  insize=2253 outsize=2252 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5914 outsize=654 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5914 outsize=310 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: preprocessCompute
+  insize=2253 outsize=2252 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: preprocessCompute
+  insize=2253 outsize=2252 ok=1
+Cmd: preprocess
+  insize=5932 outsize=458 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5914 outsize=654 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5914 outsize=310 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: preprocessCompute
+  insize=2225 outsize=2224 ok=1
+Cmd: preprocessCompute
+  insize=2250 outsize=2249 ok=1
+Cmd: preprocessCompute
+  insize=2253 outsize=2252 ok=1
+Cmd: preprocessCompute
+  insize=2251 outsize=2250 ok=1
+Cmd: preprocessCompute
+  insize=2267 outsize=2266 ok=1
+Cmd: preprocessCompute
+  insize=2268 outsize=2267 ok=1
+Cmd: preprocessCompute
+  insize=2267 outsize=2266 ok=1
+Cmd: preprocessCompute
+  insize=2278 outsize=2277 ok=1
+Cmd: preprocessCompute
+  insize=2280 outsize=2279 ok=1
+Cmd: preprocessCompute
+  insize=2280 outsize=2279 ok=1
+Cmd: preprocessCompute
+  insize=2294 outsize=2293 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(101): implicit truncation of vector type
+  api=4 insize=2293 outsize=3623 ok=1
+Cmd: preprocessCompute
+  insize=2302 outsize=2301 ok=1
+Cmd: preprocessCompute
+  insize=2316 outsize=2315 ok=1
+Cmd: preprocess
+  insize=2323 outsize=631 ok=1
+Cmd: compileSnippet
+  error: 2 plat 4 at (79): cannot implicitly convert from 'const float3' to 'float4'\nCompiling Vertex program
+Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR
+  api=4 type=0 insize=2130 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=0
+Cmd: preprocess
+  insize=2319 outsize=631 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2126 outsize=1310 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2126 outsize=630 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
+Cmd: preprocessCompute
+  insize=2329 outsize=2328 ok=1
+Cmd: preprocessCompute
+  insize=2332 outsize=2331 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at ReflectionShader.compute(59): use of potentially uninitialized variable (hit)
+  error: 1 plat 4 at ReflectionShader.compute(102): implicit truncation of vector type
+  api=4 insize=2331 outsize=3683 ok=1
+Cmd: preprocessCompute
+  insize=2332 outsize=2331 ok=1
+Cmd: preprocessCompute
+  insize=2335 outsize=2334 ok=1
+Cmd: preprocessCompute
+  insize=2328 outsize=2327 ok=1
+Cmd: preprocessCompute
+  insize=2319 outsize=2318 ok=1
+Cmd: preprocessCompute
+  insize=2321 outsize=2320 ok=1
+Cmd: preprocessCompute
+  insize=2321 outsize=2320 ok=1
+Cmd: preprocessCompute
+  insize=2322 outsize=2321 ok=1
+Cmd: preprocessCompute
+  insize=2322 outsize=2321 ok=1
+Cmd: preprocessCompute
+  insize=2321 outsize=2320 ok=1
+Cmd: preprocessCompute
+  insize=2283 outsize=2282 ok=1
+Cmd: preprocessCompute
+  insize=2282 outsize=2281 ok=1
+Cmd: preprocessCompute
+  insize=2267 outsize=2266 ok=1

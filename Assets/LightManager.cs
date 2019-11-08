@@ -98,13 +98,14 @@ public class LightManager : MonoBehaviour
     {
       
         lightManager = this;
-        lightBuffer = new ComputeBuffer(20, Marshal.SizeOf(typeof(rLightStruct)));
-        Shader.SetGlobalBuffer("lightBuffer", lightBuffer);
+   
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        lightBuffer = new ComputeBuffer(20, Marshal.SizeOf(typeof(rLightStruct)));
+        Shader.SetGlobalBuffer("lightBuffer", lightBuffer);
         lights = FindObjectsOfType<rLight>();
 
         UpdateLights();
